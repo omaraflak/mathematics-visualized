@@ -41,7 +41,7 @@ def animate(i):
     return lines
 
 print("read svg...")
-paths, _ = svg2paths("res/pi.svg")
+paths, _ = svg2paths("../res/pi.svg")
 data = paths[0].point
 
 print("computing coefficients...")
