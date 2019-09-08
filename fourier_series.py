@@ -41,16 +41,13 @@ def animate(i):
     return lines
 
 print("read svg...")
-# https://www.flaticon.com/free-icon/pi-number_2761#term=pi&page=1&position=11
 paths, _ = svg2paths("res/pi.svg")
 data = paths[0].point
 
 print("computing coefficients...")
 N = 30
-coef = [{'n': 0, 'c': fourier_coef(data, 0)}]
-for n in range(1, N):
-    coef.append({'n': n, 'c': fourier_coef(data, n)})
-    coef.append({'n': -n, 'c': fourier_coef(data, -n)})
+coef_n = [0] + [i*j for i in range(N) for j in [1, -1]]
+coef = [{'n': n, 'c': fourier_coef(data, n)} for n in coef_n]
 
 print("plot...")
 points = [np.sum([item['c']*np.exp(2*np.pi*item['n']*t*1j) for item in coef]) for t in np.arange(0, 1, 0.01)]
