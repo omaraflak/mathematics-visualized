@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # data
 time = np.arange(-5, 5, 0.01)
-freq = np.arange(-10, 10, 0.01)
+freq = np.arange(0, 5, 0.01)
 signal = 2*np.cos(2 * np.pi * 3 * time) + np.cos(2 * np.pi * 4 * time) + np.sin(2 * np.pi * 1.5 * time)
 fourier = [np.mean(signal * np.exp(-2j * np.pi * f * time)) for f in freq]
 
