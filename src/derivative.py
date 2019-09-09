@@ -8,7 +8,7 @@ dx_values = [1, 0.1, 0.01]
 point = 0.1
 xmin, xmax = point - 1, point + np.max(dx_values)
 
-fig, axs = plt.subplots(nrows=len(dx_values))
+fig, axs = plt.subplots(figsize=(15, 8), nrows=len(dx_values))
 # [ax.grid(True) for ax in axs]
 
 for idx, dx in enumerate(dx_values):
@@ -21,6 +21,11 @@ for idx, dx in enumerate(dx_values):
     xpoint = np.array([point, point + dx])
     ypoint = function(xpoint)
     axs[idx].scatter(xpoint, ypoint, s=7, color=(1, 0, 0))
+    
+    # add labels
+    arrow = dict(facecolor='black', shrink=0.01, width=1, headwidth=5, headlength=5)
+    axs[idx].annotate('f(x)', xy=(xpoint[0], ypoint[0]), xytext=(-1, 0), arrowprops=arrow)
+    axs[idx].annotate('f(x + dx), dx=%.2f' % dx, xy=(xpoint[1], ypoint[1]), xytext=(1, 0), arrowprops=arrow)
 
     # plot line going through points
     line_eq = lambda x : ((ypoint[1]-ypoint[0])/(xpoint[1]-xpoint[0])) * (x - xpoint[0]) + ypoint[0]
@@ -28,5 +33,5 @@ for idx, dx in enumerate(dx_values):
     xline = np.arange(xline_min, xline_max, 0.01)
     axs[idx].plot(xline, line_eq(xline), clip_on=False, color=(0.8, 0, 0.8, 0.7))
 
-
+plt.suptitle('df/dx = lim dx->0 [f(x + dx) - f(x)] / dx')
 plt.show()
