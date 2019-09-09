@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
+'''
+Modeling pendulum.
+'''
+
 def theta(t, theta_0, theta_dot_0, mu, m, g, L):
     theta_ = theta_0
     theta_dot_ = theta_dot_0
