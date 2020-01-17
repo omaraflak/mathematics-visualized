@@ -2,10 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # data
-time = np.arange(-5, 5, 0.01)
-freq = np.arange(0, 5, 0.01)
-signal = 2*np.cos(2 * np.pi * 3 * time) + np.cos(2 * np.pi * 4 * time) + np.sin(2 * np.pi * 1.5 * time)
-fourier = [np.mean(signal * np.exp(-2j * np.pi * f * time)) for f in freq]
+dt = df = 0.01
+time = np.arange(-5, 5, dt)
+freq = np.arange(0, 5, df)
+signal = 2 * np.cos(2 * np.pi * 3 * time) + np.cos(2 * np.pi * 4 * time) + np.sin(2 * np.pi * 1.5 * time)
+fourier = [np.sum(signal * np.exp(-2j * np.pi * f * time) * dt) for f in freq]
 
 # figure
 fig, axs = plt.subplots(nrows=4, figsize=(6, 6))
